@@ -36,6 +36,11 @@ public class GameImpl implements Game{
 
         //3. If so, update board (and last move message), otherwise only update last move message to show that an illegal move was tried
 
+        // Split the move string into source and destination squares
+
+
+        // TODO: Update last move message
+
         isNewGame = false;
         System.out.println("Player tried to perform move: " + move);
     }

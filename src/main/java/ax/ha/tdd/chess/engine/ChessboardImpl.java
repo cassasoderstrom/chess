@@ -24,6 +24,7 @@ public class ChessboardImpl implements Chessboard {
         return chessboard;
     }
 
+
     public ChessPiece getPieceAt(final Square square) {
         return board[square.getY()][square.getX()];
     }

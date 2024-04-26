@@ -47,6 +47,44 @@ public abstract class ChessPieceBase implements ChessPiece {
      */
     public abstract boolean canMove(final Chessboard chessboard, final Square destination);
 
+    protected boolean checkVerticalMove(Chessboard chessboard, Square destination) {
+        int dir = (destination.getY() - location.getY()) > 0 ? 1 : -1;
+        int y = location.getY() + dir;
+        while (y != destination.getY()) {
+            if (chessboard.getPieceAt(new Square(location.getX(), y)) != null) {
+                return false; // There is a piece blocking the path
+            }
+            y += dir;
+        }
+        return true;
+    }
+
+    protected boolean checkHorizontalMove(Chessboard chessboard, Square destination) {
+        int dir = (destination.getX() - location.getX()) > 0 ? 1 : -1;
+        int x = location.getX() + dir;
+        while (x != destination.getX()) {
+            if (chessboard.getPieceAt(new Square(x, location.getY())) != null) {
+                return false; // There is a piece blocking the path
+            }
+            x += dir;
+        }
+        return true;
+    }
+
+    protected boolean checkDiagonalMove(Chessboard chessboard, Square destination) {
+        int dirX = (destination.getX() - location.getX()) > 0 ? 1 : -1;
+        int dirY = (destination.getY() - location.getY()) > 0 ? 1 : -1;
+        int x = location.getX() + dirX;
+        int y = location.getY() + dirY;
+        while (x != destination.getX() && y != destination.getY()) {
+            if (chessboard.getPieceAt(new Square(x, y)) != null) {
+                return false; // There is a piece blocking the path
+            }
+            x += dirX;
+            y += dirY;
+        }
+        return true;
+    }
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
