@@ -29,6 +29,9 @@ public class ChessboardImpl implements Chessboard {
         return board[square.getY()][square.getX()];
     }
 
+    public void addPiece(final ChessPiece chessPiece, Square square) {
+        board[square.getY()][square.getX()] = chessPiece;
+    }
     public void addPiece(final ChessPiece chessPiece) {
         board[chessPiece.getLocation().getY()][chessPiece.getLocation().getX()] = chessPiece;
     }
@@ -55,6 +58,26 @@ public class ChessboardImpl implements Chessboard {
                 case PAWN -> {
                     addPiece(new Pawn(Color.BLACK, new Square(xCoordinate, yCoordinate)));
                     addPiece(new Pawn(Color.WHITE, new Square(xCoordinate, 7 - yCoordinate)));
+                }
+                case BISHOP -> {
+                    addPiece(new Bishop(Color.BLACK, new Square(xCoordinate, yCoordinate)));
+                    addPiece(new Bishop(Color.WHITE, new Square(xCoordinate, 7 - yCoordinate)));
+                }
+                case ROOK -> {
+                    addPiece(new Rook(Color.BLACK, new Square(xCoordinate, yCoordinate)));
+                    addPiece(new Rook(Color.WHITE, new Square(xCoordinate, 7 - yCoordinate)));
+                }
+                case KNIGHT -> {
+                    addPiece(new Knight(Color.BLACK, new Square(xCoordinate, yCoordinate)));
+                    addPiece(new Knight(Color.WHITE, new Square(xCoordinate, 7 - yCoordinate)));
+                }
+                case QUEEN -> {
+                    addPiece(new Queen(Color.BLACK, new Square(xCoordinate, yCoordinate)));
+                    addPiece(new Queen(Color.WHITE, new Square(xCoordinate, 7 - yCoordinate)));
+                }
+                case KING -> {
+                    addPiece(new King(Color.BLACK, new Square(xCoordinate, yCoordinate)));
+                    addPiece(new King(Color.WHITE, new Square(xCoordinate, 7 - yCoordinate)));
                 }
                 //TODO, when you implement a piece, add it as a case in this switch
                 default -> {

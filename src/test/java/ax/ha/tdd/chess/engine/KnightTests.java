@@ -66,21 +66,6 @@ public class KnightTests {
         assertFalse(knight.canMove(chessboard, new Square(2, 2)));
     }
 
-    //UNCOMMENT THIS WHEN LOGIC FOR CRASHING IS IN
-    /*@Test
-    public void testMoveKnightSameColorPiece() {
-        // Arrange
-        Chessboard chessboard = new ChessboardImpl();
-        Knight knight = new Knight(Color.WHITE, new Square(3, 3)); // Place the knight at the center of the board
-        Knight friendKnight = new Knight(Color.WHITE, new Square(1, 2)); // Place another white knight at a valid destination
-        chessboard.addPiece(knight);
-        chessboard.addPiece(friendKnight);
-
-        // Act & Assert
-        // Knight cannot move to a square occupied by a piece of the same color
-        assertFalse(knight.canMove(chessboard, new Square(1, 2)));
-    }*/
-
     @Test
     public void testMoveKnightOppositeColorPiece() {
         // Arrange

@@ -6,6 +6,8 @@ public interface Chessboard extends Iterable<ChessPiece[]>{
 
     ChessPiece getPieceAt(final Square square);
 
+    void addPiece(final ChessPiece chessPiece, Square square);
+
     void addPiece(final ChessPiece chessPiece);
 
     void removePieceAt(final Square square);

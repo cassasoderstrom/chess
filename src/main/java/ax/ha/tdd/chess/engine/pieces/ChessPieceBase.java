@@ -33,7 +33,9 @@ public abstract class ChessPieceBase implements ChessPiece {
     public Square getLocation() {
         return location;
     }
-
+    public void setLocation(Square square) {
+        this.location = square;
+    }
 
     /**
      * Suggestion of design:
