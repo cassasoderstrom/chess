@@ -6,7 +6,7 @@ import ax.ha.tdd.chess.engine.pieces.ChessPieceBase;
 public class GameImpl implements Game{
 
     final ChessboardImpl board = ChessboardImpl.startingBoard();
-
+    public String statusMessage;
     boolean isNewGame = true;
     private Color playerToMove = Color.WHITE;
     @Override
@@ -30,28 +30,34 @@ public class GameImpl implements Game{
         if (isNewGame) {
             return "Game hasn't begun";
         }
-        return "Last move was successful (default reply, change this)";
+        return statusMessage;
     }
 
     @Override
     public void move(String move) {
         //TODO this should trigger your move logic.
         String[] arrayMove = move.split("-");
-        for (String s : arrayMove) {
-            if (s.matches("[a-h][1-8]]")) {
-                System.out.println("INVALID" + s);
+        isNewGame = false;
+        if (!arrayMove[0].matches("[a-h][1-8]")) {
+                statusMessage = "Invalid starting square";
                 return;
             }
+        if (!arrayMove[1].matches("[a-h][1-8]")) {
+            statusMessage = "Invalid destination square";
+            return;
         }
+
 
         Square start = new Square(arrayMove[0]);
         Square end = new Square(arrayMove[1]);
         ChessPiece pieceToMove = board.getPieceAt(start);
 
         if(pieceToMove == null){
+            statusMessage = "No piece there";
             return;
         }
         if(pieceToMove.getColor() != getPlayerToMove()){
+            statusMessage = "Wrong color";
             return;
         }
 
@@ -59,6 +65,7 @@ public class GameImpl implements Game{
 
             if (board.getPieceAt(end) != null) {
                 if (getPlayerToMove() == board.getPieceAt(end).getColor()) {
+                    statusMessage = "Blocked";
                     return;
                 } else {
                     board.removePieceAt(end);
@@ -75,13 +82,14 @@ public class GameImpl implements Game{
 
 
         // TODO: Update last move message
+        statusMessage = "Last move successful";
         if(getPlayerToMove() == Color.WHITE){
             setPlayerToMove(Color.BLACK);
         }
         else{
             setPlayerToMove(Color.WHITE);
         }
-        isNewGame = false;
+
         System.out.println("Player tried to perform move: " + move);
     }
 }
